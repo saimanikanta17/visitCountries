@@ -1,0 +1,24 @@
+.image {
+  width: 250px;
+}
+.visited-country {
+  margin: 10px;
+  background-color: #1f1f2f;
+  height: 180px;
+}
+.card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 250px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.remove-btn {
+  background-color: transparent;
+  border: 1px #cbd5e1 solid;
+  width: 60px;
+  height: 30px;
+  color: #cbd5e1;
+  border-radius: 6px;
+}

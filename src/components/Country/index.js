@@ -1,19 +1,21 @@
+import './index.css'
+
 const Country = props => {
   const {country, changeCountriesList} = props
-  const {id, name, isVisited} = country
+  const {name, isVisited} = country
   const clickBtn = () => {
-    changeCountriesList(id)
+    changeCountriesList({...country, isVisited: true})
   }
 
   return (
-    <li>
+    <li className="country-item">
       <p>{name}</p>
-      {isVisited ? (
-        <button type="button" onClick={clickBtn}>
+      {!isVisited ? (
+        <button type="button" onClick={clickBtn} className="visit-btn">
           Visit
         </button>
       ) : (
-        <p>Visited</p>
+        <p className="visited">Visited</p>
       )}
     </li>
   )

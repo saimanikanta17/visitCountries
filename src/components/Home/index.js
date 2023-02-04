@@ -2,6 +2,7 @@ import {Component} from 'react'
 
 import Country from '../Country'
 import VisitedCountries from '../VisitedCountries'
+import './index.css'
 
 const initialCountriesList = [
   {
@@ -79,30 +80,44 @@ const initialCountriesList = [
 class Home extends Component {
   state = {countriesList: initialCountriesList}
 
-  changeCountriesList = () => {
-    this.setState({countriesList: initialCountriesList})
+  changeCountriesList = object => {
+    const {id} = object
+    const {countriesList} = this.state
+    const index = countriesList.findIndex(each => each.id === id)
+    countriesList.splice(index, 1, object)
+    this.setState({countriesList})
   }
 
   render() {
     const {countriesList} = this.state
+    const visitedCountries = countriesList.filter(each => each.isVisited)
+    const notVisited = visitedCountries.length === 0
     return (
-      <div>
+      <div className="bg-container">
         <h1>Countries</h1>
-        <ul>
+        <ul className="countries-list">
           {countriesList.map(country => (
             <Country
-             
-
- 
- 
-                                                 country={country}
+              country={country}
               key={country.id}
               changeCountriesList={this.changeCountriesList}
             />
           ))}
         </ul>
         <h1>Visited Countries</h1>
-        <VisitedCountries />
+        {notVisited ? (
+          <p>No Countries Visited Yet</p>
+        ) : (
+          <ul className="visited-countries-list">
+            {visitedCountries.map(country => (
+              <VisitedCountries
+                country={country}
+                key={country.id}
+                changeCountriesList={this.changeCountriesList}
+              />
+            ))}
+          </ul>
+        )}
       </div>
     )
   }
